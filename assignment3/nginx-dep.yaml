@@ -3,24 +3,29 @@ kind: Deployment
 metadata:
   name: nginx-dep
 spec:
-  replicas: 5
   selector:
     matchLabels:
       app: nginx
+      run: nginx-svc
+  replicas: 5
   template:
     metadata:
       labels:
         app: nginx
+        run: nginx-svc
     spec:
       containers:
-        - name: nginx
-          image: nginx:1.14.2
-          ports:
-            - containerPort: 80
-          volumeMounts:
-            - name: nginx-config
-              mountPath: /etc/nginx/conf.d
+      - name: nginx
+        image: nginx:1.14.2
+        ports:
+        - containerPort: 80
+
+        # Mount config map 
+        volumeMounts:
+        - name: config-volume
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.cfg
       volumes:
-        - name: nginx-config
-          configMap:
-            name: nginx-configmap
+      - name: config-volume
+        configMap:
+          name: nginx-configmap
