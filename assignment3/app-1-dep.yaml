@@ -3,18 +3,19 @@ kind: Deployment
 metadata:
   name: app-1-dep
 spec:
-  replicas: 1  # Adjust the number of replicas as needed
+  replicas: 1
   selector:
     matchLabels:
       app: app-1
+      run: app-1-sui
   template:
     metadata:
       labels:
         app: app-1
+        run: app-1-sui
     spec:
       containers:
-        - name: app-1
-          image: ghcr.io/denoslab/ensf400-sample-app:v1
-          imagePullPolicy: Always
-          ports:
-            - containerPort: 8080
+      - name: app-1
+        image: ghcr.io/denoslab/ensf400-sample-app:v1
+        ports:
+        - containerPort: 3000 
