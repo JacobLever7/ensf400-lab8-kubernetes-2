@@ -3,11 +3,10 @@ kind: Deployment
 metadata:
   name: nginx-dep
 spec:
+  replicas: 5
   selector:
     matchLabels:
       app: nginx
-      run: nginx-svc
-  replicas: 5
   template:
     metadata:
       labels:
