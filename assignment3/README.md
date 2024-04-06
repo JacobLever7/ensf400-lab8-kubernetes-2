@@ -51,3 +51,5 @@ or run this...
 
 Output:
 ![canary-output](canary-output.png)
+
+As we can see the canary deployment is redirecting to app-1 approximately 70% of the requests and redirecting to app-2 approximately 30% of the requests
